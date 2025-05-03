@@ -4,7 +4,8 @@ import Navbar from "./components/Navbar";
 
 import Home from "./pages/Home";
 import Solutions from "./pages/Solutions";
-import CaseStudies from "./pages/CaseStudies";
+import Casestudies from './pages/Casestudies';
+
 import AboutUs from "./pages/AboutUs";
 import Careers from "./pages/Careers";
 import ContactUs from "./pages/ContactUs";
@@ -24,7 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/solutions" element={<Solutions />} />
-          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/case-studies" element={<Casestudies />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/contact-us" element={<ContactUs />} />
