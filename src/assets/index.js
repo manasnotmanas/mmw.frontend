@@ -26,7 +26,8 @@ import people03 from "./people03.png";
 import CogentLogo from "./CogentLogo.png";
 import blueback from "./blueback.jpg";
 import kidsbg from "./kidsbg.jpg";
-import Suit from "./Suit.jpg"
+import Suit from "./Suit.jpg";
+import devender from "./devender.jpg"
 
 
 export {
@@ -58,5 +59,6 @@ export {
   CogentLogo,
   blueback,
   kidsbg,
-  Suit
+  Suit,
+  devender,
 };

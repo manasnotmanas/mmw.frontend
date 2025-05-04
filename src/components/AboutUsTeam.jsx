@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { User } from "lucide-react";
+import { devender } from "../assets"; // Make sure the image is available in this path
 
 const teamMembers = [
-    {
-        name: "Ritesh Pal",
-        role: "Founder & Director",
-        bio: "Make My Way Pvt. Ltd Ritesh Pal is the founder and director of Make My Way Private Limited, a process-driven BPO company delivering specialized services in tele-calling, delivery partner hiring, and customer support. With a hands-on leadership style and deep industry insight, Ritesh has been the driving force behind the company's vision, growth, and operational excellence. His strong focus on team development, performance tracking, and client satisfaction has positioned Make My Way as a reliable partner in the BPO sector. Under his leadership, the company continues to expand its service capabilities and client base across India.",
-      },
-    {
+  {
+    name: "Ritesh Pal",
+    role: "Founder & Director",
+    bio: "Make My Way Pvt. Ltd Ritesh Pal is the founder and director of Make My Way Private Limited, a process-driven BPO company delivering specialized services in tele-calling, delivery partner hiring, and customer support. With a hands-on leadership style and deep industry insight, Ritesh has been the driving force behind the company's vision, growth, and operational excellence. His strong focus on team development, performance tracking, and client satisfaction has positioned Make My Way as a reliable partner in the BPO sector. Under his leadership, the company continues to expand its service capabilities and client base across India.",
+  },
+  {
     name: "Devendar Sahu",
     role: "Co-founder",
-    bio: " Make My Way Pvt. Ltd.Devender Sahu is the co-founder of Make My Way Private Limited, a full-service BPO company delivering end-to-end business process solutions across industries. With over 10 years of experience in the BPO sector, he has worked with leading organizations such as Tech Mahindra, Energizer, Cogent, Karvy, Radical Minds, and Teleperformance. His background in business administration and deep operational expertise have helped him build and lead high-performing teams in customer service, tele-calling, and delivery partner hiring. Devender's strategic mindset and commitment to quality have played a vital role in the company’s rapid growth and trusted reputation.",
+    bio: "Make My Way Pvt. Ltd.Devender Sahu is the co-founder of Make My Way Private Limited, a full-service BPO company delivering end-to-end business process solutions across industries. With over 10 years of experience in the BPO sector, he has worked with leading organizations such as Tech Mahindra, Energizer, Cogent, Karvy, Radical Minds, and Teleperformance. His background in business administration and deep operational expertise have helped him build and lead high-performing teams in customer service, tele-calling, and delivery partner hiring. Devender's strategic mindset and commitment to quality have played a vital role in the company’s rapid growth and trusted reputation.",
   },
- ,
 ];
 
 export default function AboutUs() {
@@ -36,11 +36,11 @@ export default function AboutUs() {
       <div className="relative z-10 max-w-5xl mx-auto text-center px-4">
         <h2 className="text-4xl font-bold mb-4">About Us</h2>
         <p className="text-lg mb-12">
-        At Make My Way Private Limited, we specialize in delivering reliable and scalable BPO solutions tailored to meet the evolving needs of modern businesses. From high-volume tele-calling to delivery partner hiring and customer support operations, we offer end-to-end services that help our clients focus on growth while we handle the process.
-
-Founded by Devender and Ritesh, Make My Way was built on the vision of creating a performance-driven BPO that blends smart execution with strong accountability. With a team of trained professionals, robust quality control systems, and a deep understanding of the Indian market, we pride ourselves on being a trusted partner for startups, enterprises, and delivery platforms alike.
-
-We don’t just deliver results—we build long-term value through consistency, speed, and commitment.
+          At Make My Way Private Limited, we specialize in delivering reliable and scalable BPO solutions tailored to meet the evolving needs of modern businesses. From high-volume tele-calling to delivery partner hiring and customer support operations, we offer end-to-end services that help our clients focus on growth while we handle the process.
+          <br /><br />
+          Founded by Devender and Ritesh, Make My Way was built on the vision of creating a performance-driven BPO that blends smart execution with strong accountability. With a team of trained professionals, robust quality control systems, and a deep understanding of the Indian market, we pride ourselves on being a trusted partner for startups, enterprises, and delivery platforms alike.
+          <br /><br />
+          We don’t just deliver results—we build long-term value through consistency, speed, and commitment.
         </p>
 
         <h3 className="text-3xl font-semibold mb-10">Meet Our Team</h3>
@@ -53,8 +53,16 @@ We don’t just deliver results—we build long-term value through consistency, 
                 key={index}
                 className="bg-white text-[#0f0e47] rounded-2xl shadow-lg p-6 w-80 flex flex-col items-center transition-transform hover:scale-105 duration-300"
               >
-                <div className="w-24 h-24 bg-[#0f0e47] rounded-full flex items-center justify-center mb-4">
-                  <User className="text-white w-12 h-12" />
+                <div className="w-24 h-24 rounded-full overflow-hidden mb-4 flex items-center justify-center bg-[#0f0e47]">
+                  {member.name === "Devendar Sahu" ? (
+                    <img
+                      src={devender}
+                      alt={member.name}
+                      className="object-cover w-full h-full"
+                    />
+                  ) : (
+                    <User className="text-white w-12 h-12" />
+                  )}
                 </div>
                 <h4 className="text-xl font-semibold">{member.name}</h4>
                 <p className="text-sm text-gray-600 mb-2">{member.role}</p>
