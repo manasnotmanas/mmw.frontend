@@ -1,109 +1,73 @@
 // ContactForm.jsx
-import { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState } from 'react';
 
-function OpenInput() {
-  const [formData, setFormData] = useState({
-    name: "",
-    number: "",
-    email: "",
-  });
+export default function OpenInput() {
+  const [formData, setFormData] = useState({ name: '', number: '', email: '' });
+  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-  
-    if (name === "number") {
-      // Only allow numbers for the phone number field
-      if (/[^0-9]/.test(value)) {
-        return; // Do nothing if the input contains anything other than digits
-      }
-    }
-  
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
 
-    try {
-      // This will POST data to your server (later we'll connect it)
-      const response = await fetch('http://localhost:5000/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        alert("Message sent successfully!");
-        setFormData({ name: "", number: "", email: "" });
-      } else {
-        alert("Failed to send message.");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Error sending message.");
-    }
+    const data = await res.json();
+    setMessage(data.message);
+    if (res.ok) setFormData({ name: '', number: '', email: '' });
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#0f0e47" }}>
-      <motion.form 
-        onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="text-3xl font-bold mb-6 text-center text-indigo-700">Contact Us</h2>
-        
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Name</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            required
-          />
-        </div>
-        
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Phone Number</label>
-          <input
-            type="text"
-            name="number"
-            value={formData.number}
-            onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            required
-          />
-        </div>
-        
-        <div className="mb-6">
-          <label className="block text-gray-700 mb-2">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            required
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-lg transition duration-300"
-        >
-          Submit
-        </button>
-      </motion.form>
+    <div style={{ backgroundColor: '#0f0e47', color: 'white', padding: '2rem', borderRadius: '12px', maxWidth: '400px', margin: 'auto' }}>
+      <h2 style={{ textAlign: 'center' }}>Contact Us</h2>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <input
+          name="name"
+          placeholder="Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          style={inputStyle}
+        />
+        <input
+          name="number"
+          placeholder="Phone Number"
+          value={formData.number}
+          onChange={handleChange}
+          required
+          style={inputStyle}
+        />
+        <input
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          style={inputStyle}
+        />
+        <button type="submit" style={buttonStyle}>Submit</button>
+      </form>
+      {message && <p style={{ marginTop: '1rem', textAlign: 'center' }}>{message}</p>}
     </div>
   );
 }
 
-export default OpenInput;
+const inputStyle = {
+  padding: '0.75rem',
+  borderRadius: '8px',
+  border: '1px solid #ccc',
+};
+
+const buttonStyle = {
+  backgroundColor: '#4c6ef5',
+  color: 'white',
+  padding: '0.75rem',
+  border: 'none',
+  borderRadius: '8px',
+  cursor: 'pointer',
+};
