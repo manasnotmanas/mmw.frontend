@@ -1,7 +1,9 @@
 import React from "react";
 import { MessageSquare, Mail } from "lucide-react";
+import usePageTitle from "../components/AddTitle";
 
 const ContactCard = () => {
+  usePageTitle("Contact us")
   return (
     <div className="min-h-screen bg-[#0f0e47] px-8 md:px-20 py-12 flex flex-col items-start md:flex-row md:justify-between md:items-start">
       {/* Left Side */}

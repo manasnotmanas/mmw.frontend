@@ -5,9 +5,12 @@ import AnimatedDigitalTransformationCard from '../components/AnimatedDigitalTran
 import DigitalServicesCardsSideBySide from '../components/DigitalServicesCardsSideBySide'
 import OutsourcingPartnerProfile from '../components/OutsourcingPartnerProfile'
 import WhyChooseUs from '../components/WhyChooseUs'
+import usePageTitle from "../components/AddTitle";
 
 
 const Home = () => {
+  usePageTitle("Home")
+
   return (
     <div>
       <Hero></Hero>
